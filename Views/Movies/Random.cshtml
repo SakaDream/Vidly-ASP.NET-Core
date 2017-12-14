@@ -1,0 +1,31 @@
+﻿@using Vidly.Models
+@using Vidly.ViewModels
+@model Vidly.ViewModels.RandomMovieViewModel
+@{
+    ViewData["Title"] = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var className = Model.Customers.Count > 0 ? "popular" : null;
+}
+
+<h2 class="@className">Random</h2>
+<p>Using Model Annotation: @Model.Movie.Name</p>
+<p>Using ViewData: @(((Movie)ViewData["Movie"]).Name)</p>
+<p>Using ViewBag: @(((Movie)ViewBag.Movie).Name)</p>
+<br/>
+<p>Movie Name: @Model.Movie.Name</p>
+
+@if (Model.Customers.Count == 0)
+{
+    <p>No one has rented this movie before.</p>
+}
+else
+{
+    <ul>
+        @foreach (var customer in Model.Customers)
+        {
+            <li>@customer.Name</li>
+        }
+    </ul>
+}
