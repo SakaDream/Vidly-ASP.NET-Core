@@ -1,5 +1,5 @@
 pipeline {
-  agent none
+  agent { dockerfile true }
   stages {
     stage('Build') {
       steps {
@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Run') {
       steps {
-        sh 'docker run -d -p 8080:80 --name Vidly'
+        sh 'docker run -d -p 8081 --name Vidly'
       }
     }
   }
