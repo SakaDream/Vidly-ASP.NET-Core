@@ -1,5 +1,5 @@
 node {
-    docker.withRegistry('registry.heroku.com', 'Heroku_Access_Token') {
+    docker.withRegistry('https://registry.heroku.com', 'Heroku_Access_Token') {
 
         stage "build"
         def app = docker.build "Vidly-ASP"
