@@ -1,15 +1,11 @@
-pipeline {
-  agent { dockerfile true }
-  stages {
-    stage('Build') {
-      steps {
-        sh 'docker build -t Vidly .'
-      }
+node("docker") {
+    docker.withRegistry('registry.heroku.com', 'Heroku_Access_Token') {
+
+        stage "build"
+        def app = docker.build "Vidly-ASP"
+    
+        stage "publish"
+        app.push 'master'
+        app.push "${commit_id}"
     }
-    stage('Run') {
-      steps {
-        sh 'docker run -d -p 8081 --name Vidly'
-      }
-    }
-  }
 }
