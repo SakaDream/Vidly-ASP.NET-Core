@@ -2,7 +2,7 @@ node {
     docker.withRegistry('https://registry.heroku.com', 'Heroku_Access_Token') {
 
         stage "build"
-        def app = docker.build "vidly7162"
+        def app = docker.build "vidly7162/web"
     
         stage "publish"
         app.push 'master'
