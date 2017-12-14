@@ -1,4 +1,4 @@
-node("docker") {
+node {
     docker.withRegistry('registry.heroku.com', 'Heroku_Access_Token') {
 
         stage "build"
